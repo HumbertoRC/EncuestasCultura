@@ -1,0 +1,20 @@
+[
+  {
+    "id": "q-001",
+    "text": "¿Qué tan efectivo eres comunicando ideas complejas?",
+    "description": "Evalúa tu capacidad de comunicación",
+    "typeId": 1,
+    "categoryId": "cat-001",
+    "isRequired": true,
+    "weight": 10
+  },
+  {
+    "id": "q-002",
+    "text": "¿Con qué frecuencia colaboras efectivamente con el equipo?",
+    "description": "Evalúa tu nivel de colaboración",
+    "typeId": 2,
+    "categoryId": "cat-001",
+    "isRequired": true,
+    "weight": 8
+  }
+]

@@ -1,0 +1,56 @@
+<div class="survey-container">
+  <h2>{{ surveyTitle }}</h2>
+
+  <form (ngSubmit)="submitSurvey()">
+    <div *ngFor="let q of questions" class="question-block">
+      <label>{{ q.text }}</label>
+
+      <!-- Numeric / Single Choice -->
+      <select *ngIf="q.type==='numeric'" [(ngModel)]="answers[q.id]" name="{{q.id}}" required>
+        <option value="" disabled selected>Selecciona</option>
+        <option *ngFor="let o of q.options" [value]="o">{{ o }}</option>
+      </select>
+
+      <!-- Likert -->
+      <div *ngIf="q.type==='likert'">
+        <label *ngFor="let o of q.options">
+          <input type="radio" [(ngModel)]="answers[q.id]" [value]="o" name="{{q.id}}" required/> {{ o }}
+        </label>
+      </div>
+
+      <!-- Multiple Select -->
+      <div *ngIf="q.type==='multiple_select'">
+        <label *ngFor="let o of q.options">
+          <input type="checkbox" [value]="o" name="{{q.id}}" (change)="onCheckboxChange($event, q.id)"/> {{ o }}
+        </label>
+      </div>
+
+      <!-- Open Text -->
+      <textarea *ngIf="q.type==='open_text'" [(ngModel)]="answers[q.id]" name="{{q.id}}" rows="3"></textarea>
+
+      <!-- Star Rating -->
+      <div *ngIf="q.type==='star_rating'">
+        <label *ngFor="let o of q.options">
+          <input type="radio" [(ngModel)]="answers[q.id]" [value]="o" name="{{q.id}}" /> {{ o }} ★
+        </label>
+      </div>
+
+      <!-- Matrix -->
+      <table *ngIf="q.type==='matrix'">
+        <tr>
+          <th>Atributo</th>
+          <th *ngFor="let opt of q.options">{{ opt }}</th>
+        </tr>
+        <tr *ngFor="let row of q.matrix">
+          <td>{{ row }}</td>
+          <td *ngFor="let opt of q.options">
+            <input type="radio" [name]="q.id + '-' + row" [(ngModel)]="answers[q.id + '-' + row]" [value]="opt"/>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
+    <button type="submit">Enviar Encuesta</button>
+  </form>
+</div>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "admin-001",
+    "name": "Administrador",
+    "email": "admin@empresa.com",
+    "password": "admin123",
+    "roleId": 1,
+    "isActive": true,
+    "createdAt": "2024-01-01"
+  },
+  {
+    "id": "user-001",
+    "name": "Juan Pérez",
+    "email": "juan@empresa.com",
+    "password": "user123",
+    "roleId": 3,
+    "isActive": true,
+    "createdAt": "2024-01-02"
+  }
+]

@@ -1,0 +1,63 @@
+<div class="dashboard-container">
+  <h1>Bienvenido al Dashboard - {{ currentUserRole | titlecase }}</h1>
+
+  <!-- Filtros -->
+  <div class="filters">
+    <label>
+      Tipo de encuesta:
+      <select [(ngModel)]="selectedType">
+        <option value="">Todos</option>
+        <option *ngFor="let t of surveyTypes" [value]="t">{{ t }}</option>
+      </select>
+    </label>
+
+    <label>
+      Estado:
+      <select [(ngModel)]="selectedStatus">
+        <option value="">Todos</option>
+        <option value="Activa">Activa</option>
+        <option value="Borrador">Borrador</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- Acciones de administrador -->
+  <div *ngIf="canEdit()" class="admin-actions">
+    <button>Crear Nueva Encuesta</button>
+    <button>Crear Nueva Pregunta</button>
+    <button>Subir Preguntas CSV/Excel</button>
+  </div>
+
+  <!-- Listado de encuestas -->
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Tipo</th>
+        <th>Estado</th>
+        <th>Fechas</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let survey of filteredSurveys">
+        <td>{{ survey.title }}</td>
+        <td>{{ survey.type }}</td>
+        <td>{{ survey.status }}</td>
+        <td>{{ survey.startDate }} - {{ survey.endDate }}</td>
+        <td>
+          <button (click)="openSurvey(survey)">
+            {{ currentUserRole === 'usuario' ? 'Responder' : 'Administrar' }}
+          </button>
+          <button *ngIf="canViewMetrics()">Ver Métricas</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Panel consultor/usuario -->
+  <div *ngIf="currentUserRole==='consultor' || currentUserRole==='usuario'" class="info-panel">
+    <p *ngIf="currentUserRole==='consultor'">Aquí puede ver participación y reportes generales.</p>
+    <p *ngIf="currentUserRole==='usuario'">Aquí puede ver encuestas asignadas y su historial.</p>
+  </div>
+</div>

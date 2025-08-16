@@ -1,0 +1,22 @@
+[
+  {
+    "id": "s-001",
+    "title": "Evaluación de Liderazgo 360°",
+    "description": "Evaluación completa de competencias de liderazgo",
+    "typeId": 3,
+    "statusId": 2,
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "createdBy": "admin-001"
+  },
+  {
+    "id": "s-002",
+    "title": "Clima Laboral 2025",
+    "description": "Encuesta para medir el clima organizacional",
+    "typeId": 4,
+    "statusId": 2,
+    "startDate": "2025-02-01",
+    "endDate": "2025-06-30",
+    "createdBy": "admin-001"
+  }
+]
